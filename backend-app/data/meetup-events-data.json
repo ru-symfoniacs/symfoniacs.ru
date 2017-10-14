@@ -1,0 +1,42 @@
+{
+  "241743764": {
+    "media": [
+      {
+        "name": "All video – Symfony Moscow Meetup #12th",
+        "url": "https://www.youtube.com/playlist?list=PLlsBBnQmNLDMGQiDH0Cb4mSkz4k3I5RHK",
+        "type": "video",
+        "provider": "youtube"
+      },
+      {
+        "name": "Как медиа сервисы Skyeng переехали на Symfony 4",
+        "url": "https://www.youtube.com/watch?v=cpVgiGxXmYs",
+        "type": "video",
+        "provider": "youtube"
+      },
+      {
+        "name": "GraphQL: Инструкции по применению ",
+        "url": "https://www.youtube.com/watch?v=LTNlG9A0D7Y",
+        "type": "video",
+        "provider": "youtube"
+      },
+      {
+        "name": "Обзор готовых решений для администрирования контента ",
+        "url": "https://www.youtube.com/watch?v=P-9Qfhdq14Q",
+        "type": "video",
+        "provider": "youtube"
+      },
+      {
+        "name": "Предзагрузка данных в SPA",
+        "url": "https://www.youtube.com/watch?v=Ta0pTNlHcDE",
+        "type": "video",
+        "provider": "youtube"
+      },
+      {
+        "name": "Photos",
+        "url": "https://www.meetup.com/Symfoniacs/photos/28042591/",
+        "type": "photos",
+        "provider": "meetup"
+      }
+    ]
+  }
+}
