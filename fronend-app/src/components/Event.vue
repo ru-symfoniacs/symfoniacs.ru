@@ -23,20 +23,19 @@
                 <div class="host">
                     <div class="host__name">{{event.venue.name}}</div>
                     <div class="host__country-city">{{event.venue.city}}, {{event.venue.localized_country_name}}</div>
-                    <address class="host__address">{{event.venue.address_1}}</address>
+                    <address class="host__address">
+                        <a :href="'https://maps.yandex.ru/?text='+event.venue.lat+','+event.venue.lon" target="_blank">
+                            <i class="fa fa-map-marker"></i>
+                            {{event.venue.address_1}}
+                        </a>
+                    </address>
                 </div>
             </div>
+            <div class="clearfix"></div>
 
-        </div>
-
-        <div class="event-description" :class="{'event-description_expanded':showDescription}">
-            <a class="btn btn-link btn-xs" @click.prevent="showDescription=!showDescription" href="javascript:void(0)">
-                <i class="fa" :class="{'fa-expand':!showDescription,'fa-compress':showDescription}"></i>
-
-                {{!showDescription ? 'Show' : 'Hide'}} event's programme
-            </a>
-
-            <div v-html="event.description" v-show="showDescription" class="event-description__body"></div>
+            <div v-if="isRegistrationOpen" class="event__get-invite col-sm-12">
+                <a :href="event.link" target="_blank" rel="noreferrer noopener nofollow" class="btn btn-success btn-block btn-sm"> Get an invite</a>
+            </div>
         </div>
 
         <div class="presentations" v-if="event.extra_data">
@@ -50,7 +49,14 @@
                     {{mediaItem.name}}
                 </a>
             </div>
+        </div>
 
+        <div class="event-description" :class="'event-description_'+(showDescription?'expanded':'collapsed')">
+            <a class="btn btn-link btn-xs" @click.prevent="showDescription=!showDescription" href="javascript:void(0)">
+                <i class="fa" :class="{'fa-expand':!showDescription,'fa-compress':showDescription}"></i>
+                {{!showDescription ? 'Show' : 'Hide'}} event's programme
+            </a>
+            <div v-html="event.description" class="event-description__body"></div>
         </div>
 
 
@@ -67,11 +73,18 @@
                 showDescription: false
             }
         },
+        computed: {
+            isRegistrationOpen() {
+                const currDate = new Date();
+                return this.event.time > currDate.getTime();
+            }
+        },
         methods: {
             timestamp2Date(time) {
                 const s = spacetime(time);
                 return s.format('iso-short');
             },
+
             timestamp2Time(time) {
                 const s = spacetime(time);
                 return s.format('time-h24');

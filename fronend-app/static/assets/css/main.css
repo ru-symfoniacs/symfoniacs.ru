@@ -8,7 +8,7 @@ body{
     display: flex;
     /*align-items: center;*/
     justify-content: center;
-    flex-direction: column;
+    /*flex-direction: column;*/
     align-items: center;
 }
 .sy-links a{
@@ -16,5 +16,5 @@ body{
     line-height: auto;
     font-weight: normal;
     white-space: normal;
-    margin: 2   px 5px;
+    margin: 2px 5px;
 }
