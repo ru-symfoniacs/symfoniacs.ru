@@ -9,3 +9,7 @@
 config/meetup-secret-key.txt
 
 
+
+###> symfony/web-server-bundle ###
+.web-server-pid
+###< symfony/web-server-bundle ###

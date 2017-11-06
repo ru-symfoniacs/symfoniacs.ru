@@ -33,5 +33,5 @@ services:
         class: App\API\MeetupAPI
         public: true
         arguments:
-            $secretKey: %env(MEETUP_SECRET_KEY)%
+            $secretKey: "%env(MEETUP_SECRET_KEY)%"
             $meetupLocalDataFile: "%kernel.root_dir%/../data/meetup-events-data.json"

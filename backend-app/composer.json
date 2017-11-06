@@ -1,15 +1,18 @@
 {
     "type": "project",
     "license": "proprietary",
+    "minimum-stability": "beta",
     "require": {
-        "php": "^7.1.3",
+        "php": "^7.0.8",
         "dms/meetup-api-client": "^2.3",
         "sensio/framework-extra-bundle": "^3.0",
         "symfony/annotations-pack": "^1.0",
-        "symfony/console": "^3.3",
+        "symfony/console": "^4.0",
         "symfony/flex": "^1.0",
-        "symfony/framework-bundle": "^3.3",
-        "symfony/yaml": "^3.3"
+        "symfony/framework-bundle": "^4.0",
+        "symfony/lts": "^4@dev",
+        "symfony/web-server-bundle": "^4.0@beta",
+        "symfony/yaml": "^4.0"
     },
     "require-dev": {
         "symfony/dotenv": "^3.3"
