@@ -11,10 +11,10 @@
         "symfony/flex": "^1.0",
         "symfony/framework-bundle": "^4.0",
         "symfony/lts": "^4@dev",
-        "symfony/web-server-bundle": "^4.0@beta",
         "symfony/yaml": "^4.0"
     },
     "require-dev": {
+        "symfony/web-server-bundle": "^4.0@beta",
         "symfony/dotenv": "^3.3"
     },
     "config": {
