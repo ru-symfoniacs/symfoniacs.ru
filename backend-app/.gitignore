@@ -1,10 +1,11 @@
 ###> symfony/framework-bundle ###
 .env
-/public/bundles/
+/public/frontend-dist
+/public/index.html
 /var/
 /vendor/
 ###< symfony/framework-bundle ###
 
 config/meetup-secret-key.txt
 
-public/frontend
+

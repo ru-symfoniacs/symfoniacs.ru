@@ -17,7 +17,7 @@ class PagesController extends Controller
      */
     public function indexAction()
     {
-        $resultFile = $this->getParameter('kernel.root_dir') . '/../../web/index.html';
+        $resultFile = $this->getParameter('kernel.root_dir') . '/../public/frontend-dist/index.html';
 
         return new Response(file_get_contents($resultFile), Response::HTTP_OK);
     }

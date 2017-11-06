@@ -10,7 +10,7 @@
             <loader v-if="meetupLoading(meetupId)"></loader>
 
             <div class="meetup__events">
-                <event :event="event" v-for="event in meetings" :key="event.id"></event>
+                <event :event="event" :meetupId="meetupId" v-for="event in meetupEvents" :key="event.id"></event>
             </div>
 
         </div>
@@ -39,7 +39,6 @@
         inject: ['meetupApi'],
 
         created() {
-            this.checkRoute(this.$route);
             this.$store.dispatch(MEETUP_LOAD_MEETINGS, {meetupApi: this.meetupApi, meetupId: this.meetupId});
         },
 
@@ -51,23 +50,11 @@
         },
         computed: {
             ...mapGetters(['meetupLoading']),
-            meetings() {
+            meetupEvents() {
                 return this.$store.getters.events(this.meetupId);
             }
-        },
-        methods: {
-            checkRoute(route) {
-                console.log(route);
-                if (route.name === 'meetingExpand' && route.params.meetupId === this.meetupId) {
-                    this.expandedItem = route.params.meetingId;
-                }
-            },
-        },
-        watch: {
-            '$route'(to, from) {
-                this.checkRoute(to);
-            }
         }
+
     }
 </script>
 
@@ -92,6 +79,10 @@
         /*margin-bottom: 0;*/
     }
 
+    h3, h3 a {
+        color: orangered;
+    }
+
     .meetup__meta {
         font-size: 1.2rem;
     }
@@ -102,6 +93,13 @@
 
     .event {
         padding-bottom: 15px;
+    }
+
+    .event_expanded{
+        padding: 0 15px ;
+    }
+
+    .meetup .event{
         border-bottom: 1px solid #EEE;
     }
 
@@ -116,6 +114,7 @@
 
     .event__title h3 {
         margin: 0;
+        flex-grow: 2;
     }
 
     .event .event-description {
@@ -145,13 +144,15 @@
     }
 
     .event-description_expanded {
-        background: #FFFFE8;
+        background: #FFF;
         max-height: none;
+        padding: 0;
+        border-top: 1px dashed #D8D8D8;
+        border-radius: 0;
     }
 
     .event-description .event-description__body {
         margin-top: 5px;
-        border-top: 1px dashed #CCC;
         padding-top: 10px;
     }
 
@@ -160,16 +161,34 @@
         padding: 20px;
     }
 
-    .event-description__body img {
-        max-width: 100%;
+    .event-description__body_page {
+        padding: 20px;
+        text-align: left;
+        max-height: 10%;
+        overflow-y: scroll;
     }
 
-    .event .event__get-invite{
+    .event-description__body img, .event-description__body_page img {
+        max-width: 100%;
+        display: block;
+    }
+
+    .event .event__get-invite {
         margin-top: 10px;
     }
-    .event__get-invite{
 
+
+    .event__show-more-container{
+        padding: 4px 0 0 ;
+        text-align: center;
     }
+    .event__show-more-button{
+        width: 100px;
+    }
+
+    .event__get-invite {
+    }
+
     .event__open-on-meetup {
         text-align: right;
         font-size: 1.1rem;
@@ -207,10 +226,28 @@
         margin-right: 10px;
     }
 
-
-    .host__map-link{
+    .host__map-link {
         display: inline-block;
         font-size: 2rem;
     }
 
+    .expanded-event {
+
+    }
+    .expanded-event__header{
+
+    }
+    .expanded-event__title {
+        display: block;
+        font-size: 2.8rem;
+        width: calc(100% - 70px);
+    }
+
+    .expanded-event__close-button-container{
+        text-align: center;
+    }
+
+    .expanded-event__close-button{
+        width: 150px;
+    }
 </style>

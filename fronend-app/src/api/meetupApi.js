@@ -1,4 +1,3 @@
-import Vue from 'vue'
 import axios from 'axios'
 
 class MeetupApiFacade {
@@ -13,8 +12,7 @@ class MeetupApiFacade {
 
     getAllMeetings(meetupId) {
         let url = this.apiUrl + '/' + meetupId + '/events';
-        return fetch(url);
-        // return this.http.get(url, {withCredentials:false});
+        return this.http.get(url);
     }
 
     getMeetupInfo(meetupId) {

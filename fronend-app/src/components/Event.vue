@@ -1,73 +1,69 @@
 <template>
-    <article class="event">
-        <div class="event__title">
+    <article class="event" :class="{event_expanded:expanded}" v-if="event">
+        <div class="event__title" v-if="!expanded">
             <h3>
-                {{event.name}}
+                <router-link v-if="!expanded"
+                             :to="{name: 'eventExpand', params:{meetupId, eventId:event.id}}">
+                    {{event.name}}
+                </router-link>
+
+                <span v-if="expanded">{{event.name}}</span>
             </h3>
             <div class="event__open-on-meetup"><a :href="event.link" target="_blank">Open on meetup.com  <i class="fa fa-external-link-square"></i></a></div>
         </div>
-        <!--<div class="open-on-meetup"><a :href="event.link" target="_blank">Open on meetup.com  <i class="fa fa-external-link-square"></i></a></div>-->
+
+        <div v-if="expanded" class="event__open-on-meetup"><a :href="event.link" target="_blank">Open on meetup.com  <i class="fa fa-external-link-square"></i></a></div>
 
         <div class="row meetup__meta">
             <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                <div>
-                    <time>Date: {{timestamp2Date(event.time)}}</time>
-                </div>
-                <div>
-                    <time>Time: {{timestamp2Time(event.time)}}</time>
-                </div>
-                <div>Guests: {{event.yes_rsvp_count}}</div>
+                <event-info :event="event"></event-info>
             </div>
 
             <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-                <div class="host">
-                    <div class="host__name">{{event.venue.name}}</div>
-                    <div class="host__country-city">{{event.venue.city}}, {{event.venue.localized_country_name}}</div>
-                    <address class="host__address">
-                        <a :href="'https://maps.yandex.ru/?text='+event.venue.lat+','+event.venue.lon" target="_blank">
-                            <i class="fa fa-map-marker"></i>
-                            {{event.venue.address_1}}
-                        </a>
-                    </address>
-                </div>
+                <event-host-info :event="event"></event-host-info>
             </div>
             <div class="clearfix"></div>
 
             <div v-if="isRegistrationOpen" class="event__get-invite col-sm-12">
-                <a :href="event.link" target="_blank" rel="noreferrer noopener nofollow" class="btn btn-success btn-block btn-sm"> Get an invite</a>
-            </div>
-        </div>
-
-        <div class="presentations" v-if="event.extra_data">
-            <h4>Photos, videos, presentations:</h4>
-            <div v-for="mediaItem in event.extra_data.media" class="presentations__item">
-                <a :href="mediaItem.url" target="_blank" rel="nofollow noopener noreferrer">
-                    <i class="fa" :class="{
-                            'fa-video-camera':mediaItem.type==='video',
-                            'fa-camera': mediaItem.type==='photos'
-                        }"></i>
-                    {{mediaItem.name}}
+                <a :href="event.link" target="_blank" rel="noreferrer noopener nofollow" class="btn btn-success btn-block btn-sm">
+                    Registration
                 </a>
             </div>
         </div>
 
-        <div class="event-description" :class="'event-description_'+(showDescription?'expanded':'collapsed')">
-            <a class="btn btn-link btn-xs" @click.prevent="showDescription=!showDescription" href="javascript:void(0)">
-                <i class="fa" :class="{'fa-expand':!showDescription,'fa-compress':showDescription}"></i>
-                {{!showDescription ? 'Show' : 'Hide'}} event's programme
-            </a>
+        <event-extra-data :event="event"></event-extra-data>
+
+        <div class="event-description event-description_expanded" v-if="expanded">
+            <div class="event-description__body_page" v-html="event.description"></div>
+        </div>
+
+        <div class="event-description event-description_collapsed" v-if="!expanded">
             <div v-html="event.description" class="event-description__body"></div>
+        </div>
+
+        <div class="event__show-more-container" v-if="!expanded">
+            <router-link :to="{name: 'eventExpand', params:{meetupId, eventId:event.id}}" class="btn btn-link  btn-xs event__show-more-button">
+                Show more
+                <i class="fa fa-chevron-down"></i>
+            </router-link>
         </div>
 
 
     </article>
 </template>
 <script>
-    import spacetime from 'spacetime';
+    import EventHostInfo from "./EventHostInfo.vue";
+    import EventInfo from "./EventInfo.vue";
+    import EventExtraData from "./EvntExtraData.vue";
 
     export default {
+        components: {
+            EventExtraData,
+            EventInfo,
+            EventHostInfo
+        },
         name: 'Event',
-        props: ['event'],
+        props: ['event', 'meetupId', 'expanded'],
         data: function () {
             return {
                 showDescription: false
@@ -78,18 +74,8 @@
                 const currDate = new Date();
                 return this.event.time > currDate.getTime();
             }
-        },
-        methods: {
-            timestamp2Date(time) {
-                const s = spacetime(time);
-                return s.format('iso-short');
-            },
-
-            timestamp2Time(time) {
-                const s = spacetime(time);
-                return s.format('time-h24');
-            }
         }
+
     }
 </script>
 

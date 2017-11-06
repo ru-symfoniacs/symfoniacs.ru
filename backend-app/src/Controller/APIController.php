@@ -23,10 +23,15 @@ class APIController extends Controller
      */
     public function eventsAction(string $meetupId)
     {
-        $api = $this->get('app.meetup_api');
+        $api     = $this->get('app.meetup_api');
+        $headers = [];
+        $status  = Response::HTTP_OK;
+
+        if ($this->getParameter('kernel.environment') === 'dev') {
+            $headers['Access-Control-Allow-Origin'] = '*';
+        }
 
         $events = $api->fetchEvents($meetupId)->toArray();
-
         $api->mixLocalData($events);
 
         return new JsonResponse(
@@ -34,10 +39,8 @@ class APIController extends Controller
                 'status' => 'success',
                 'events' => $events
             ],
-            200,
-            [
-                'Access-Control-Allow-Origin' => '*'
-            ]
+            $status,
+            $headers
         );
     }
 }

@@ -1,7 +1,10 @@
 body{
     padding-top: 20px;
     padding-bottom: 40px;
-    text-align: center; 
+}
+
+.container.static-content{
+    text-align: center;
 }
 
 .sy-links {
