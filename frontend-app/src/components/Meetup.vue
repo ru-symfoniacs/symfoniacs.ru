@@ -3,7 +3,7 @@
         <div class="meetup">
             <h2>
 
-                <a href="http://www.meetup.com/Symfoniacs/"><i class="fa fa-meetup"></i> {{meetupName}}</a>
+                <a :href="'http://www.meetup.com/'+meetupId+'/'" target="_blank" rel="noreferrer noopener nofollow"><i class="fa fa-meetup"></i> {{meetupName}}</a>
             </h2>
             <p v-if="short_description" class="short_description">{{short_description}}</p>
 
@@ -95,11 +95,11 @@
         padding-bottom: 15px;
     }
 
-    .event_expanded{
-        padding: 0 15px ;
+    .event_expanded {
+        padding: 0 15px;
     }
 
-    .meetup .event{
+    .meetup .event {
         border-bottom: 1px solid #EEE;
     }
 
@@ -177,12 +177,12 @@
         margin-top: 10px;
     }
 
-
-    .event__show-more-container{
-        padding: 4px 0 0 ;
+    .event__show-more-container {
+        padding: 4px 0 0;
         text-align: center;
     }
-    .event__show-more-button{
+
+    .event__show-more-button {
         width: 100px;
     }
 
@@ -234,20 +234,22 @@
     .expanded-event {
 
     }
-    .expanded-event__header{
+
+    .expanded-event__header {
 
     }
+
     .expanded-event__title {
         display: block;
         font-size: 2.8rem;
         width: calc(100% - 70px);
     }
 
-    .expanded-event__close-button-container{
+    .expanded-event__close-button-container {
         text-align: center;
     }
 
-    .expanded-event__close-button{
+    .expanded-event__close-button {
         width: 150px;
     }
 </style>
