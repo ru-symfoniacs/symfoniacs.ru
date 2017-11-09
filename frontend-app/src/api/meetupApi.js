@@ -3,7 +3,7 @@ import axios from 'axios'
 class MeetupApiFacade {
 
     // apiUrl = "https://api.meetup.com";
-    apiUrl = "http://127.0.0.1:8000/api";
+    apiUrl = process.env.NODE_ENV === 'production' ? "/api" : "http://127.0.0.1:8000/api";
     http = null;
 
     constructor(http) {
