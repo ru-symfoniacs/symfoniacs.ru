@@ -21,7 +21,7 @@
 
 <script>
     import Meetup from "./components/Meetup.vue";
-    import {MEETUP_SET_EXPANDED_EVENT} from "./store/mutation-types";
+    import {MEETUP_SET_EXPANDED_EVENT, MEETUP_UNSET_EXPANDED_EVENT} from "./store/mutation-types";
     import ExpandedEventPage from "./components/ExpandedEventPage.vue";
 
     export default {
@@ -38,9 +38,13 @@
 
         methods: {
             checkRoute(route) {
-                if (route.name === 'eventExpand') {
-                    console.log(route);
-                    this.$store.dispatch(MEETUP_SET_EXPANDED_EVENT, {meetupApi: this.meetupApi, ...route.params})
+                switch (route.name){
+                    case 'eventExpand':
+                        this.$store.dispatch(MEETUP_SET_EXPANDED_EVENT, {meetupApi: this.meetupApi, ...route.params});
+                        break;
+                    case 'home':
+                        this.$store.commit(MEETUP_UNSET_EXPANDED_EVENT);
+                        break;
                 }
             },
         },
