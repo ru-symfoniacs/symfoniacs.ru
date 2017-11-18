@@ -1,0 +1,15 @@
+###> symfony/framework-bundle ###
+.env
+/public/frontend-dist
+/public/index.html
+/var/
+/vendor/
+###< symfony/framework-bundle ###
+
+config/meetup-secret-key.txt
+
+
+
+###> symfony/web-server-bundle ###
+.web-server-pid
+###< symfony/web-server-bundle ###
