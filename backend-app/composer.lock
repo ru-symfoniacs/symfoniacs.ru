@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "33e9b682a743d095a33bfe1230272763",
+    "content-hash": "f8a6a4e16503d89a6412b0f148068017",
     "packages": [
         {
             "name": "dms/meetup-api-client",
@@ -1922,6 +1922,57 @@
         }
     ],
     "packages-dev": [
+        {
+            "name": "deployer/recipes",
+            "version": "6.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/deployphp/recipes.git",
+                "reference": "5f462100d2c9a109e119ea390091c1e66d961f74"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/deployphp/recipes/zipball/5f462100d2c9a109e119ea390091c1e66d961f74",
+                "reference": "5f462100d2c9a109e119ea390091c1e66d961f74",
+                "shasum": ""
+            },
+            "replace": {
+                "deployer/recipes": "self.version"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "autoload.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Anton Medvedev",
+                    "email": "anton@medv.io"
+                }
+            ],
+            "description": "3rd party deployer recipes",
+            "homepage": "https://github.com/deployphp/recipes",
+            "keywords": [
+                "cachetool",
+                "cloudflare",
+                "deploy",
+                "deployer",
+                "deployment",
+                "hipchat",
+                "newrelic",
+                "rabbit",
+                "recipes",
+                "sentry",
+                "slack",
+                "yarn"
+            ],
+            "time": "2017-08-24T13:39:08+00:00"
+        },
         {
             "name": "symfony/dotenv",
             "version": "v3.4.0-BETA3",
